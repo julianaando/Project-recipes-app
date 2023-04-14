@@ -14,7 +14,7 @@ function Meals() {
   return (
     <div
       className="flex flex-col h-screen
-     bg-orange-100 max-w-sm max-h-128 m-0 justify-start "
+     bg-orange-100 max-w-sm max-h-128 m-0 justify-start"
       style={ { backgroundImage: `url(${background})` } }
     >
       <Header title="Meals" hasSearchIcon />

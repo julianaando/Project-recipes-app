@@ -98,6 +98,18 @@ export default function Login() {
             Enter
           </button>
         </form>
+        <h4 className="font-pacifico text-orange-200 text-xl ">
+          {' '}
+          <a href="https://github.com/alinesresende" target="_blank" rel="noreferrer">Aline</a>
+          ,
+          {' '}
+          <a href="https://github.com/julianaando" target="_blank" rel="noreferrer">Juliana</a>
+          {' '}
+          e
+          {' '}
+          <a href="https://github.com/lucaslmatos" target="_blank" rel="noreferrer">Lucas</a>
+          {' '}
+        </h4>
       </div>
     </div>
   );
