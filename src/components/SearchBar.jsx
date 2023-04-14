@@ -72,7 +72,10 @@ function SearchBar() {
           onChange={ handleInputSearch }
         />
       </div>
-      <div className="text-center items-center mt-2 ">
+      <div
+        className="text-center items-center mt-2 "
+        style={ { accentColor: 'orange' } }
+      >
         <input
           data-testid="ingredient-search-radio"
           type="radio"

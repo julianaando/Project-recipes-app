@@ -122,6 +122,8 @@ export default function RecipeInProgress({ type }) {
                       newList[index].checked = !newList[index].checked; // Altera o valor do item para o oposto
                       setIngredientCheck(newList); // Atualiza o estado
                     } }
+                    className="mr-3"
+                    style={ { accentColor: 'orange' } }
                   />
                   {ingredient.name}
                   -

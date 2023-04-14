@@ -92,7 +92,7 @@ export default function Login() {
             disabled={ bttnDisabled.disabled }
             data-testid="login-submit-btn"
             className="m-4 w-44 rounded-full text-xl
-              shadow-md bg-orange-300 hover:bg-orange-400 py-2 px-4
+              shadow-md bg-orange-400 hover:bg-orange-600 py-2 px-4
               disabled:bg-orange-200 disabled:text-white"
           >
             Enter
