@@ -64,47 +64,90 @@ export default function RecipeDetails({ type, recommendationType }) {
 
   if (!isLoading) {
     return (
-      <div>
+      <div
+        className="overflow-y-scroll shadow-2xl
+      bg-white rounded-md text-center m-2 opacity-90
+       border-4"
+      >
+        <div
+          className="font-pacifico text-orange-400 text-4xl m-3 "
+          data-testid="recipe-title "
+        >
+          {(recipe.name).slice(0, 25)}
+        </div>
+        <div
+          data-testid="recipe-category"
+          className="font-pacifico text-orange-300 text-xl mb-3 "
+        >
+          {recipe.type === RecipeType.MEAL ? recipe.category : recipe.alcoholicOrNot}
+        </div>
         <div>
           {recipe.image && <img
             src={ recipe.image }
-            width="100px"
+            width="150px"
             alt={ recipe.image }
             data-testid="recipe-photo"
+            className="flex flex-col justify-center m-auto mb-3"
           />}
         </div>
-        <div data-testid="recipe-title">
-          {recipe.name}
+        <div
+          className="shadow-2xl
+          bg-orange-100 rounded-md text-center m-2 opacity-90
+       border-4 border-orange-300 mt-4"
+        >
+          <div
+            className="font-pacifico text-orange-300 text-xl mb-3 "
+          >
+            Ingrediens List
+          </div>
+          <div
+            className="overflow-y-scroll"
+            style={ { maxHeight: '200px' } }
+          >
+            <ul className="list-disc m-1">
+              {ingredients.map(({ name, measure }, index) => (
+                <li
+                  key={ name }
+                  data-testid={ `${index}-ingredient-name-and-measure` }
+                >
+                  {`${name} ---------- ${measure}`}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div data-testid="recipe-category">
-          {recipe.type === RecipeType.MEAL ? recipe.category : recipe.alcoholicOrNot}
-        </div>
-        <ul>
-          {ingredients.map(({ name, measure }, index) => (
-            <li
-              key={ name }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-            >
-              {`${name}     ${measure}`}
-            </li>
-          ))}
-        </ul>
-        <div data-testid="instructions">
-          {instructions}
+        <div
+          className="shadow-2xl
+          bg-orange-100 rounded-md text-center m-2 opacity-90
+       border-4 border-color-orange  border-orange-300 mt-4"
+          data-testid="instructions"
+        >
+          <div
+            className="font-pacifico text-orange-300 text-xl mb-3 "
+          >
+            Description
+          </div>
+          <div
+            className="overflow-y-scroll"
+            style={ { maxHeight: '300px' } }
+          >
+            {instructions}
+          </div>
         </div>
         {type === RecipeType.MEAL && (
           <iframe
             data-testid="video"
-            width="360"
-            height="200"
+            width="240"
+            height="150"
             src={ videoLink }
             title={ recipe.name }
+            className="flex flex-col justify-center m-auto mt-4 mb-3"
           />
         )}
 
         <Recomendations type={ recommendationType } />
 
-        <div className="social-buttons-div">
+        <div className="social-buttons-div flex flex-row justify-between w-80 m-auto">
           <button
             name="Share"
             onClick={ shareRecipe }
@@ -114,6 +157,7 @@ export default function RecipeDetails({ type, recommendationType }) {
               name="Share"
               src={ shareIcon }
               alt="share icon"
+              className="bg-orange-300 radious-lg m-1 p-2 rounded-md"
             />
           </button>
           <button
@@ -128,6 +172,7 @@ export default function RecipeDetails({ type, recommendationType }) {
                   name="Favorite"
                   src={ blackHeartIcon }
                   alt="share icon"
+                  className="bg-orange-300 radious-lg m-1 p-2 rounded-md"
                 />)
               : (
                 <img
@@ -135,16 +180,18 @@ export default function RecipeDetails({ type, recommendationType }) {
                   name="Favorite"
                   src={ whiteHeartIcon }
                   alt="share icon"
+                  className="bg-orange-300 radious-lg m-1 p-2 rounded-md"
                 />)}
           </button>
         </div>
-        {linkCopied && <div> Link copied!</div>}
+        {linkCopied && <div className="font-pacifico text-orange-300 text-sm"> Link copied!</div>}
 
         {!isDone && (
           <button
             data-testid="start-recipe-btn"
             name={ inProgress ? 'Continue Recipe' : 'Start Recipe' }
-            className="action-buttons"
+            className="m-4 w-44 rounded-full text-xl
+            shadow-md bg-orange-300 hover:bg-orange-400 py-2 px-4"
             onClick={ startRecipe }
           >
             {inProgress ? 'Continue Recipe' : 'Start Recipe'}

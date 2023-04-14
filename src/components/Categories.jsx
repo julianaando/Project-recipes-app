@@ -26,12 +26,13 @@ function Categories({ categories }) {
   };
 
   return (
-    <div className="categories">
+    <div className="grid-cols-3 items-center m-3 text-center">
       <button
         type="button"
         data-testid="All-category-filter"
         onClick={ () => handleClick('') }
         className={ selectedCategory === '' ? 'selected' : '' }
+        className="m-2 w-20 rounded-full bg-orange-300 hover:bg-orange-400 h-6"
       >
         All
       </button>
@@ -42,8 +43,9 @@ function Categories({ categories }) {
           data-testid={ `${category.strCategory}-category-filter` }
           onClick={ () => handleClick(category.strCategory) }
           className={ selectedCategory === category.strCategory ? 'selected' : '' }
+          className="m-2 w-20 rounded-full bg-orange-300 hover:bg-orange-400 h-6"
         >
-          {category.strCategory}
+          {(category.strCategory).slice(0, 8)}
         </button>
       ))}
     </div>

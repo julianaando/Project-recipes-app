@@ -11,13 +11,11 @@ function Recipes({ type, recipes }) {
   const slicedMealsCategories = mealsCategories.slice(0, maxCategory);
   const slicedDrinksCategories = drinksCategories.slice(0, maxCategory);
   return (
-    <>
-      <div>
-        <Categories
-          categories={ type === 'meal' ? slicedMealsCategories : slicedDrinksCategories }
-        />
-      </div>
-      <div className="recipes">
+    <div className="flex flex-col items-center">
+      <Categories
+        categories={ type === 'meal' ? slicedMealsCategories : slicedDrinksCategories }
+      />
+      <div className="flex flex-auto flex-wrap justify-center w-80 h-80 overflow-y-scroll">
         {recipes.map((recipe, index) => (
           <Link
             to={
@@ -25,12 +23,18 @@ function Recipes({ type, recipes }) {
             }
             key={ index }
           >
-            <div data-testid={ `${index}-recipe-card` }>
+            <div
+              data-testid={ `${index}-recipe-card` }
+              className="flex flex-col justify-center text-center w-32 bg-white radious-md
+            max-w-sm shadow-2xl
+            rounded-md m-1 opacity-90"
+            >
               <img
                 data-testid={ `${index}-card-img` }
+                className="w-28 m-2"
                 src={
                   `${recipe[type === 'meal' ? 'strMealThumb' : 'strDrinkThumb']}/preview`
-                // recipe.strMealThumb || recipe.strDrinkThumb
+                  // recipe.strMealThumb || recipe.strDrinkThumb
                 }
                 alt={ type === 'meal' ? recipe.strMeal : recipe.strDrink }
               />
@@ -43,7 +47,7 @@ function Recipes({ type, recipes }) {
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

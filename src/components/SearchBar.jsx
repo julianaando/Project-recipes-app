@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { TextField } from '@mui/material';
 import RecipesContext from '../context/RecipesContext';
 import fetchApi from '../servers/fetchApi';
 
@@ -62,46 +63,60 @@ function SearchBar() {
   // }, [listMealsOrDrinks, isAtDrinkPage, history, drinksOrMealsKeys, id]);
 
   return (
-    <div>
-      <input
-        data-testid="search-input"
-        type="text"
-        value={ inputSearch }
-        onChange={ handleInputSearch }
-      />
-      <input
-        data-testid="ingredient-search-radio"
-        type="radio"
-        name="recipes_type"
-        id="ingredient"
-        value="ingredient"
-        onChange={ handleTypeRadio }
-      />
-      <label htmlFor="ingredient">ingredient</label>
+    <div className="flex flex-col items-center">
+      <div>
+        <TextField
+          id="input-with-sx"
+          label="Search"
+          variant="outlined"
+          className=" bg-white "
+          name="email"
+          type="text"
+          size="small"
+          data-testid="search-input"
+          color="warning"
+          value={ inputSearch }
+          onChange={ handleInputSearch }
+        />
+      </div>
+      <div className="text-center items-center mt-2 ">
+        <input
+          data-testid="ingredient-search-radio"
+          type="radio"
+          name="recipes_type"
+          id="ingredient"
+          className="mr-2 ml-2 align-middle"
+          value="ingredient"
+          onChange={ handleTypeRadio }
+        />
+        <label htmlFor="ingredient">ingredient</label>
+        <input
+          data-testid="name-search-radio"
+          type="radio"
+          name="recipes_type"
+          id="name"
+          className="mr-2 ml-2 align-middle"
+          value="name"
+          onChange={ handleTypeRadio }
+        />
+        <label htmlFor="name"> name </label>
 
-      <input
-        data-testid="name-search-radio"
-        type="radio"
-        name="recipes_type"
-        id="name"
-        value="name"
-        onChange={ handleTypeRadio }
-      />
-      <label htmlFor="name"> name </label>
-
-      <input
-        data-testid="first-letter-search-radio"
-        type="radio"
-        name="recipes_type"
-        id="first-letter"
-        value="first-letter"
-        onChange={ handleTypeRadio }
-      />
-      <label htmlFor="first-letter"> first letter </label>
+        <input
+          data-testid="first-letter-search-radio"
+          type="radio"
+          name="recipes_type"
+          className="mr-2 ml-2 align-middle"
+          id="first-letter"
+          value="first-letter"
+          onChange={ handleTypeRadio }
+        />
+        <label htmlFor="first-letter"> first letter </label>
+      </div>
 
       <button
         data-testid="exec-search-btn"
         onClick={ handleButtonSearch }
+        className="m-1 mt-2 w-20 rounded-full bg-orange-300 hover:bg-orange-400"
       >
         Search
       </button>

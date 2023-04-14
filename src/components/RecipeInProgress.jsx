@@ -69,48 +69,72 @@ export default function RecipeInProgress({ type }) {
 
   if (!isLoading) { // Confere se os dados da receita já foram carregados
     return (
-      <div>
+      <div
+        className="overflow-y-scroll shadow-2xl
+      bg-white rounded-md text-center m-2 opacity-90
+       border-4"
+      >
+        <div
+          data-testid="recipe-title"
+          className="font-pacifico text-orange-400 text-4xl m-3 "
+        >
+          {(recipe.name).slice(0, 25)}
+        </div>
+        <div
+          data-testid="recipe-category"
+          className="font-pacifico text-orange-300 text-xl mb-3 "
+        >
+          {recipe.type === RecipeType.MEAL ? recipe.category : recipe.alcoholicOrNot}
+        </div>
         <div>
           {recipe.image && <img
             src={ recipe.image }
             width="200px"
             alt={ recipe.image }
             data-testid="recipe-photo"
+            className="flex flex-col justify-center m-auto mb-3"
           />}
         </div>
-        <div data-testid="recipe-title">
-          {recipe.name}
+        <div
+          className="shadow-2xl
+          bg-orange-100 rounded-md text-center m-2 opacity-90
+       border-4 border-orange-300 mt-4"
+        >
+          <div
+            className="font-pacifico text-orange-300 text-xl mb-3 mt-2 "
+          >
+            Ingrediens List
+          </div>
+          <div>
+            <ul style={ { listStyleType: 'none' } }>
+              {ingredientCheck.map((ingredient, index) => (
+                <li
+                  key={ index }
+                  data-testid={ `${index}-ingredient-step` }
+                  style={ { textDecoration: ingredient.checked
+                    ? 'line-through solid rgb(0,0,0)' : 'none' } }
+                >
+                  <input
+                    type="checkbox"
+                    checked={ ingredient.checked }
+                    onChange={ () => {
+                      const newList = [...ingredientCheck]; // Copia o array
+                      newList[index].checked = !newList[index].checked; // Altera o valor do item para o oposto
+                      setIngredientCheck(newList); // Atualiza o estado
+                    } }
+                  />
+                  {ingredient.name}
+                  -
+                  {ingredient.measure === null ? '' : ingredient.measure}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div data-testid="instructions">
+            {recipe.instructions}
+          </div>
         </div>
-        <div data-testid="recipe-category">
-          {recipe.type === RecipeType.MEAL ? recipe.category : recipe.alcoholicOrNot}
-        </div>
-        <ul style={ { listStyleType: 'none' } }>
-          {ingredientCheck.map((ingredient, index) => (
-            <li
-              key={ index }
-              data-testid={ `${index}-ingredient-step` }
-              style={ { textDecoration: ingredient.checked
-                ? 'line-through solid rgb(0,0,0)' : 'none' } }
-            >
-              <input
-                type="checkbox"
-                checked={ ingredient.checked }
-                onChange={ () => {
-                  const newList = [...ingredientCheck]; // Copia o array
-                  newList[index].checked = !newList[index].checked; // Altera o valor do item para o oposto
-                  setIngredientCheck(newList); // Atualiza o estado
-                } }
-              />
-              {ingredient.name}
-              -
-              {ingredient.measure === null ? '' : ingredient.measure}
-            </li>
-          ))}
-        </ul>
-        <div data-testid="instructions">
-          {recipe.instructions}
-        </div>
-        <div className="social-buttons-div">
+        <div className="social-buttons-div flex flex-row justify-between w-80 m-auto mt-3">
           <button
             name="Share"
             onClick={ shareRecipe }
@@ -120,6 +144,7 @@ export default function RecipeInProgress({ type }) {
               name="Share"
               src={ shareIcon }
               alt="share icon"
+              className="bg-orange-300 radious-lg m-1 p-2 rounded-md"
             />
           </button>
           <button
@@ -133,6 +158,7 @@ export default function RecipeInProgress({ type }) {
                 name="Favorite"
                 src={ blackHeartIcon }
                 alt="share icon"
+                className="bg-orange-300 radious-lg m-1 p-2 rounded-md"
               />
             ) : (
               <img
@@ -140,6 +166,7 @@ export default function RecipeInProgress({ type }) {
                 name="Favorite"
                 src={ whiteHeartIcon }
                 alt="share icon"
+                className="bg-orange-300 radious-lg m-1 p-2 rounded-md"
               />
             )}
           </button>
@@ -149,6 +176,8 @@ export default function RecipeInProgress({ type }) {
           data-testid="finish-recipe-btn"
           name="Finish"
           disabled={ !ingredientCheck.every((ingredient) => ingredient.checked) }
+          className="m-4 w-44 rounded-full text-xl
+            shadow-md bg-orange-300 hover:bg-orange-400 py-2 px-4 disabled:bg-orange-200 disabled:text-white"
           onClick={ finishRecipe }
         >
           Finish Recipe

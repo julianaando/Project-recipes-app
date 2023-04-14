@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { TextField } from '@mui/material';
+import Logo from '../images/Logo.png';
+import background from '../images/Background.png';
 
 export default function Login() {
   // Declaração dos estados e variáveis úteis.
@@ -37,41 +40,66 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div
+      className="flex flex-col h-screen
+     bg-orange-100 justify-evenly max-w-sm max-h-128 "
+      style={ { backgroundImage: `url(${background})` } }
+    >
       {/* Estrutura do formulário */}
-      <header className="App-header">
-        <p>APP de Receitas</p>
-      </header>
-      <form onSubmit={ handleClick }>
-        <label>
-          Email
-          <input
+      <div
+        className="shadow-2xl  bg-white rounded-md text-center m-2 opacity-90"
+      >
+        <header
+          className="
+        text-center m-2 flex flex-col justify-evenly"
+        >
+          <img className="w-60 m-auto" src={ Logo } alt="App icon" />
+          <p className="font-pacifico text-orange-400 text-3xl m-2">App de Receitas</p>
+          <p className="font-pacifico text-orange-400 text-3xl m-2">TRYBE</p>
+        </header>
+        <form
+          onSubmit={ handleClick }
+          className="flex flex-col
+       m-2
+       items-center"
+        >
+          <TextField
+            id="input-with-sx"
+            label="Email"
+            variant="outlined"
+            className="m-3 bg-white"
             name="email"
             type="email"
             data-testid="email-input"
+            color="warning"
             value={ user.email }
             onChange={ handleChange }
           />
-        </label>
-        <label>
-          Senha
-          <input
+          <TextField
+            id="outlined-basic"
+            label="Password"
+            variant="outlined"
+            className="m-3 bg-white "
             name="password"
             type="password"
             data-testid="password-input"
+            color="warning"
             value={ user.password }
             onChange={ handleChange }
           />
-        </label>
-        <button
-          type="submit"
-          disabled={ bttnDisabled.disabled }
-          data-testid="login-submit-btn"
-        >
-          Enter
-        </button>
-      </form>
-    </>
+          <button
+            type="submit"
+            disabled={ bttnDisabled.disabled }
+            data-testid="login-submit-btn"
+            className="m-4 w-44 rounded-full text-xl
+              shadow-md bg-orange-300 hover:bg-orange-400 py-2 px-4
+              disabled:bg-orange-200 disabled:text-white"
+          >
+            Enter
+          </button>
+        </form>
+      </div>
+    </div>
   );
 }
 

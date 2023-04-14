@@ -1,15 +1,15 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import RecipeDetails from '../components/RecipeDetails';
 import { RecipeType } from '../servers/fetchApi';
+import background from '../images/Background.png';
 
 function DrinksRecipes() {
-  const { id } = useParams();
   return (
-    <div>
-      Drink Recipe id :
-      {' '}
-      { id }
+    <div
+      className="flex flex-col h-screen
+     bg-orange-100 justify-evenly max-w-sm max-h-128 "
+      style={ { backgroundImage: `url(${background})` } }
+    >
       <RecipeDetails type={ RecipeType.DRINK } recommendationType={ RecipeType.MEAL } />
     </div>
   );

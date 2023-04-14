@@ -3,6 +3,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import RecipesContext from '../context/RecipesContext';
+import background from '../images/Background.png';
 
 function Drinks() {
   const { listMealsOrDrinks } = useContext(RecipesContext);
@@ -20,7 +21,11 @@ function Drinks() {
   const newListDrinks = listMealsOrDrinks.slice(0, maxNumber);
 
   return (
-    <div>
+    <div
+      className="flex flex-col h-screen
+     bg-orange-100 max-w-sm max-h-128 m-0 justify-start "
+      style={ { backgroundImage: `url(${background})` } }
+    >
       <Header title="Drinks" hasSearchIcon />
       <Recipes type="drink" recipes={ newListDrinks } />
       <Footer />

@@ -17,11 +17,15 @@ function Footer() {
   };
 
   return (
-    <footer data-testid="footer" style={ { position: 'fixed', bottom: 0 } }>
+    <footer
+      data-testid="footer"
+      className="flex flex-row justify-between w-86 fixed bottom-0"
+    >
       <button
         data-testid="drinks-bottom-btn"
         src={ drinkIcon }
         onClick={ handleButtonDrinks }
+        className=" bg-orange-300 radious-lg m-1 p-2 rounded-md"
       >
         <img src={ drinkIcon } alt="drink icon" />
       </button>
@@ -29,6 +33,7 @@ function Footer() {
         data-testid="meals-bottom-btn"
         src={ mealIcon }
         onClick={ handleButtonMeals }
+        className=" bg-orange-300 radious-lg m-1 p-2 rounded-md"
       >
         <img src={ mealIcon } alt="meal icon" />
       </button>
