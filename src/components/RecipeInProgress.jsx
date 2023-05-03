@@ -173,7 +173,7 @@ export default function RecipeInProgress({ type }) {
             )}
           </button>
         </div>
-        {linkCopied && <div> Link copied!</div>}
+        {linkCopied && <div className="font-pacifico text-orange-300 text-sm"> Link copied!</div>}
         <button
           data-testid="finish-recipe-btn"
           name="Finish"

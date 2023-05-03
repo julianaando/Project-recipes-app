@@ -25,7 +25,7 @@ function Footer() {
         data-testid="drinks-bottom-btn"
         src={ drinkIcon }
         onClick={ handleButtonDrinks }
-        className=" bg-orange-300 radious-lg  rounded-md"
+        className=" bg-orange-300 radious-lg  rounded-md p-2 m-1"
       >
         <img src={ drinkIcon } alt="drink icon" />
       </button>
@@ -33,7 +33,7 @@ function Footer() {
         data-testid="meals-bottom-btn"
         src={ mealIcon }
         onClick={ handleButtonMeals }
-        className=" bg-orange-300 radious-lg  rounded-md"
+        className=" bg-orange-300 radious-lg  rounded-md p-2 m-1"
       >
         <img src={ mealIcon } alt="meal icon" />
       </button>
